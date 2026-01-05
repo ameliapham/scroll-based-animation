@@ -1,8 +1,8 @@
 import * as THREE from "three";
 
 export function setupResize(
-  renderer: THREE.WebGLRenderer,
-  camera: THREE.PerspectiveCamera
+  camera: THREE.PerspectiveCamera,
+  renderer: THREE.WebGLRenderer
 ) {
   window.addEventListener("resize", () => {
     // Update camera

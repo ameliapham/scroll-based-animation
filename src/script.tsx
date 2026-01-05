@@ -16,10 +16,6 @@ const canvas = getCanvas();
 // --- Scene Setup ---
 const scene = createScene();
 
-// --- Setup Axes Helper ---
-const axesHelper = createAxesHelper(2);
-scene.add(axesHelper)
-
 // --- Camera Setup ---
 const camera = createCamera();
 scene.add(camera)
@@ -27,6 +23,10 @@ scene.add(camera)
 // --- Objects ---
 const cube = createCube();
 scene.add(cube);
+
+// --- Setup Axes Helper ---
+const axesHelper = createAxesHelper(2);
+scene.add(axesHelper)
 
 // --- Renderer Setup ---
 const renderer = createRenderer(canvas);
@@ -39,4 +39,4 @@ gui.close()
 setupResize(camera, renderer);
 
 // --- Render Loop ---
-startAnimation(renderer, scene, camera);
+startAnimation(scene, camera, renderer);
