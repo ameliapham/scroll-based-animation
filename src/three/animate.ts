@@ -1,10 +1,14 @@
 import * as THREE from "three";
 
-export function startAnimation(
-    scene: THREE.Scene,
-    camera: THREE.PerspectiveCamera,
-    renderer: THREE.WebGLRenderer
-) {
+type AnimateParams = {
+    scene: THREE.Scene;
+    camera: THREE.PerspectiveCamera;
+    renderer: THREE.WebGLRenderer;
+};
+
+export function startAnimation( props : AnimateParams ) {
+    const { scene, camera, renderer } = props;
+    
     const clock = new THREE.Clock();
 
     function animate() {

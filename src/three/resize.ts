@@ -1,10 +1,14 @@
 import * as THREE from "three";
 
-export function setupResize(
-  camera: THREE.PerspectiveCamera,
-  renderer: THREE.WebGLRenderer
-) {
-  window.addEventListener("resize", () => {
+type ResizeParams = {
+    camera: THREE.PerspectiveCamera;
+    renderer: THREE.WebGLRenderer;
+}
+
+export function setupResize(props : ResizeParams) {
+  const { camera, renderer } = props;
+
+  function onResize () {
     // Update camera
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -12,5 +16,11 @@ export function setupResize(
     // Update renderer
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  });
+  }
+
+  window.addEventListener("resize", onResize);
+
+  return () => {
+    window.removeEventListener("resize", onResize);
+  }
 }

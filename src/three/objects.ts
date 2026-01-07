@@ -1,8 +1,15 @@
 import * as THREE from "three";
 
-export function createCube() {
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 'red' });
+type CubeParams = {
+    size?: number;
+    color?: string;
+}
+
+export function createCube( props : CubeParams ) {
+    const { size, color } = props;
+
+    const geometry = new THREE.BoxGeometry(size, size, size);
+    const material = new THREE.MeshBasicMaterial({ color: color });
     const cube = new THREE.Mesh(geometry, material);
     return cube;
 }
