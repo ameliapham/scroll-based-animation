@@ -4,7 +4,8 @@ import { getCanvas } from "./three/canvas";
 import { createScene } from "./three/scene";
 import { createCamera } from "./three/camera";
 import { createRenderer } from "./three/renderer";
-import { createCube, createAxesHelper } from "./three/objects";
+import { createTorus } from "./three/models/meshs";
+import { createAxesHelper } from "./three/models/axesHelper";
 import { setupResize } from "./three/resize";
 import { startAnimation } from "./three/animate";
 
@@ -21,11 +22,16 @@ const camera = createCamera();
 scene.add(camera)
 
 // --- Objects ---
-const cube = createCube( { size: 1, color: 'red' } );
-scene.add(cube);
+const torusProps = {
+    size: 1,
+    color: 'orange',
+}
+const torus = createTorus(torusProps);
+
+scene.add( torus );
 
 // --- Setup Axes Helper ---
-const axesHelper = createAxesHelper(2);
+const axesHelper = createAxesHelper({ size: 2 });
 scene.add(axesHelper)
 
 // --- Renderer Setup ---
