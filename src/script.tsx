@@ -23,17 +23,23 @@ const camera = createCamera();
 scene.add(camera)
 
 // --- Lights Setup ---
-const { ambientLight } = createAmbientLight();
+//const { ambientLight } = createAmbientLight();
 const { directionalLight } = createDirectionalLight();
-directionalLight.position.set(1, 1, 0);
-scene.add( ambientLight, directionalLight );
+directionalLight.position.set(2, 3, 1);
+directionalLight.target.position.set(0, 0, 0);
+scene.add( directionalLight, directionalLight.target );
 
 // --- Objects ---
-const torus = createTorus({ size: 1, color: "#ff5c47ff"});
+const meshParams = {
+    color : "#db9a18",
+    textureURL: "static/textures/gradients/5.jpg",
+}
+
+const torus = createTorus({ size: 1, ...meshParams});
 torus.position.x = -2;
-const cone = createCone({ radius: 1, height: 2, color: "#8cb446ff"});
+const cone = createCone({ radius: 1, height: 2, ...meshParams});
 cone.position.x = 2;
-const torusKnot = createTorusKnot({ size: 0.8, color: "#3a32cdff"}); 
+const torusKnot = createTorusKnot({ size: 0.8, ...meshParams}); 
 torusKnot.position.y = 2;
 scene.add( torus, cone, torusKnot );
 

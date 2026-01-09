@@ -1,20 +1,30 @@
 import * as THREE from "three";
 
 type MeshProps = {
+    textureURL: string,
     color: string,
     positions?: THREE.Vector3,
     rotations?: THREE.Euler,
 }
 
-function createMaterial( color: string ): THREE.Material {
-    const material = new THREE.MeshToonMaterial ({ color })
+function createMaterial( color: string, textureURL: string ): THREE.Material {
+    const gradientTexture = new THREE.TextureLoader().load( textureURL );
+
+    gradientTexture.minFilter = THREE.NearestFilter;
+    gradientTexture.magFilter = THREE.NearestFilter;
+    gradientTexture.generateMipmaps = false;
+
+    const material = new THREE.MeshToonMaterial ({ 
+        color,
+        gradientMap: gradientTexture
+    })
     return material;
 }
 
 function createMesh( geometry: THREE.BufferGeometry, props: MeshProps ) : THREE.Mesh {
-    const { color, positions, rotations } = props;
+    const { color, textureURL, positions, rotations } = props;
     
-    const material = createMaterial( color );
+    const material = createMaterial( color, textureURL );
 
     const mesh = new THREE.Mesh( geometry, material );
 
