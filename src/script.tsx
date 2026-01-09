@@ -5,6 +5,7 @@ import { createScene } from "./three/scene";
 import { createCamera } from "./three/camera";
 import { createRenderer } from "./three/renderer";
 import { createTorus, createCone, createTorusKnot } from "./three/models/meshs";
+import { createAmbientLight, createDirectionalLight } from "./three/lights"; 
 import { createAxesHelper } from "./three/models/axesHelper";
 import { setupResize } from "./three/resize";
 import { startAnimation } from "./three/animate";
@@ -21,11 +22,19 @@ const scene = createScene();
 const camera = createCamera();
 scene.add(camera)
 
-// --- Objects ---
-const torus = createTorus({ size: 1, color: "#ff6347" });
-const cone = createCone({ radius: 1, height: 2, color: "#4682b4"});
-const torusKnot = createTorusKnot({ size: 0.8, color: "#32cd32"}); 
+// --- Lights Setup ---
+const { ambientLight } = createAmbientLight();
+const { directionalLight } = createDirectionalLight();
+directionalLight.position.set(1, 1, 0);
+scene.add( ambientLight, directionalLight );
 
+// --- Objects ---
+const torus = createTorus({ size: 1, color: "#ff5c47ff"});
+torus.position.x = -2;
+const cone = createCone({ radius: 1, height: 2, color: "#8cb446ff"});
+cone.position.x = 2;
+const torusKnot = createTorusKnot({ size: 0.8, color: "#3a32cdff"}); 
+torusKnot.position.y = 2;
 scene.add( torus, cone, torusKnot );
 
 // --- Setup Axes Helper ---
