@@ -7,10 +7,6 @@ html {
     background-color: #6b2828;
 }
 
-html, body {
-    /* overflow: hidden; */
-}
-
 .webgl {
     position: fixed;
     top: 0;
