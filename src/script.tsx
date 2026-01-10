@@ -32,16 +32,19 @@ scene.add( directionalLight, directionalLight.target );
 // --- Objects ---
 const meshParams = {
     color : "#db9a18",
-    textureURL: "static/textures/gradients/5.jpg",
+    textureURL: "static/textures/gradients/3.jpg",
 }
 
-const torus = createTorus({ size: 1, ...meshParams});
-torus.position.x = -2;
+const torus = createTorus({ size: 0.8, ...meshParams});
 const cone = createCone({ radius: 1, height: 2, ...meshParams});
-cone.position.x = 2;
 const torusKnot = createTorusKnot({ size: 0.8, ...meshParams}); 
-torusKnot.position.y = 2;
 scene.add( torus, cone, torusKnot );
+
+const objectsDistance = 4;
+torus.position.y = - objectsDistance * 0;
+cone.position.y = - objectsDistance * 1;
+torusKnot.position.y = - objectsDistance * 2;
+
 
 // --- Setup Axes Helper ---
 const axesHelper = createAxesHelper({ size: 2 });
