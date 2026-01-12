@@ -49,8 +49,8 @@ export function createTorus ( props : TorusProps ) {
     const { size } =  props
 
     const geometry = new THREE.TorusGeometry(
-        size || 1,
-        size || 1 * 0.4,
+        size ?? 1,
+        size ? size * 0.4 : 0.4,
         16,
         60
     );
