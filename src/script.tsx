@@ -63,4 +63,4 @@ gui.close()
 setupResize({ camera, renderer });
 
 // --- Render Loop ---
-startAnimation({ scene, camera, renderer, sectionMeshes});
+startAnimation({ scene, camera, renderer, sectionMeshes, objectsDistance });
