@@ -47,6 +47,10 @@ torus.position.y = - objectsDistance * 0;
 cone.position.y = - objectsDistance * 1;
 torusKnot.position.y = - objectsDistance * 2;
 
+torus.position.x = 2;
+cone.position.x = - 2;
+torusKnot.position.x = 2;
+
 
 // --- Setup Axes Helper ---
 const axesHelper = createAxesHelper({ size: 2 });
