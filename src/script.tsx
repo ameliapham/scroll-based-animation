@@ -40,6 +40,8 @@ const cone = createCone({ radius: 1, height: 2, ...meshParams});
 const torusKnot = createTorusKnot({ size: 0.8, ...meshParams}); 
 scene.add( torus, cone, torusKnot );
 
+const sectionMeshes = [ torus, cone, torusKnot ];
+
 const objectsDistance = 4;
 torus.position.y = - objectsDistance * 0;
 cone.position.y = - objectsDistance * 1;
@@ -61,4 +63,4 @@ gui.close()
 setupResize({ camera, renderer });
 
 // --- Render Loop ---
-startAnimation({ scene, camera, renderer });
+startAnimation({ scene, camera, renderer, sectionMeshes});
