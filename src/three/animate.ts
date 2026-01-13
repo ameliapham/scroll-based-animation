@@ -5,27 +5,48 @@ type AnimateParams = {
     camera: THREE.PerspectiveCamera;
     renderer: THREE.WebGLRenderer;
     sectionMeshes: THREE.Object3D[];
-    objectsDistance?: number;
+    objectsDistance: number; // distance between objects
+    cameraGroup: THREE.Group; // to apply parallax effect
 };
 
 export function startAnimation( props : AnimateParams ) {
-    const { scene, camera, renderer, sectionMeshes, objectsDistance } = props;
+    const { scene, camera, renderer, sectionMeshes, objectsDistance, cameraGroup } = props;
     
     const clock = new THREE.Clock();
 
     // Scroll state
     let scrollY = window.scrollY;
     
-    window.addEventListener("scroll", () => {
+    const onScroll = () => {
         scrollY = window.scrollY;
-    });
+    }
+    window.addEventListener( 'scroll', onScroll );
+
+    // --- Cursor ---
+    const cursor = {x: 0,y: 0}
+
+    const onMouseMove = (event: MouseEvent) => {
+        cursor.x = ( event.clientX / window.innerWidth ) - 0.5;
+        cursor.y = ( event.clientY / window.innerHeight ) - 0.5;
+    }
+    window.addEventListener( 'mousemove', onMouseMove );
+
+
+    // Animation loop
 
     function animate() {
         // Update time
         const elapsedTime = clock.getElapsedTime();
 
         // Animate camera based on scroll
-        camera.position.y = - scrollY / window.innerHeight * (objectsDistance ?? 4); // 4 is the distance between objects
+        camera.position.y = - scrollY / window.innerHeight * objectsDistance;
+
+        // Animate camera based on cursor
+        const parallaxX = cursor.x * 0.5;
+        const parallaxY = - cursor.y * 0.5;
+
+        cameraGroup.position.x = - parallaxX;
+        cameraGroup.position.y = - parallaxY;
 
         // Update objects
         for ( const object of sectionMeshes ) {

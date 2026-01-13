@@ -1,4 +1,5 @@
 import GUI from "lil-gui"
+import * as THREE from "three";
 
 import { getCanvas } from "./three/canvas";
 import { createScene } from "./three/scene";
@@ -19,8 +20,11 @@ const canvas = getCanvas();
 const scene = createScene();
 
 // --- Camera Setup ---
+const cameraGroup = new THREE.Group();
+scene.add(cameraGroup);
+
 const camera = createCamera();
-scene.add(camera)
+cameraGroup.add(camera)
 
 // --- Lights Setup ---
 //const { ambientLight } = createAmbientLight();
@@ -31,7 +35,7 @@ scene.add( directionalLight, directionalLight.target );
 
 // --- Objects ---
 const meshParams = {
-    color : "#db9a18",
+    color : "#feffda",
     textureURL: "static/textures/gradients/3.jpg",
 }
 
@@ -67,4 +71,4 @@ gui.close()
 setupResize({ camera, renderer });
 
 // --- Render Loop ---
-startAnimation({ scene, camera, renderer, sectionMeshes, objectsDistance });
+startAnimation({ scene, camera, renderer, sectionMeshes, objectsDistance, cameraGroup });
