@@ -61,4 +61,9 @@ export function startAnimation( props : AnimateParams ) {
         window.requestAnimationFrame(animate);
     }
     animate();
+
+    return () => {
+        window.removeEventListener( 'scroll', onScroll );
+        window.removeEventListener( 'mousemove', onMouseMove );
+    }
 }
