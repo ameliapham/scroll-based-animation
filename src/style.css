@@ -4,7 +4,7 @@
 }
 
 html {
-    background-color: #6b2828;
+    background-color: #000000;
 }
 
 .webgl {
@@ -21,9 +21,9 @@ html {
     height: 100vh;
     position: relative;
     font-family: 'Cabin', sans-serif;
-    color: #e7b8b8;
+    color: #feffda;
     text-transform: uppercase;
-    font-size: 7vmin;
+    font-size: 4vmin;
     padding-left: 10%;
     padding-right: 10%;
 }
