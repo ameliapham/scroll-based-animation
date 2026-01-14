@@ -45,8 +45,8 @@ export function startAnimation( props : AnimateParams ) {
         const parallaxX = cursor.x * 0.5;
         const parallaxY = - cursor.y * 0.5;
 
-        cameraGroup.position.x = - parallaxX;
-        cameraGroup.position.y = - parallaxY;
+        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 0.1;
+        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 0.1;
 
         // Update objects
         for ( const object of sectionMeshes ) {
