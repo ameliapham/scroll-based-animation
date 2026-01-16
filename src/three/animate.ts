@@ -13,6 +13,7 @@ export function startAnimation( props : AnimateParams ) {
     const { scene, camera, renderer, sectionMeshes, objectsDistance, cameraGroup } = props;
     
     const clock = new THREE.Clock();
+    let previousTime = 0;
 
     // Scroll state
     let scrollY = window.scrollY;
@@ -37,6 +38,8 @@ export function startAnimation( props : AnimateParams ) {
     function animate() {
         // Update time
         const elapsedTime = clock.getElapsedTime();
+        const deltaTime = elapsedTime - previousTime;
+        previousTime = elapsedTime;
 
         // Animate camera based on scroll
         camera.position.y = - scrollY / window.innerHeight * objectsDistance;
@@ -45,8 +48,8 @@ export function startAnimation( props : AnimateParams ) {
         const parallaxX = cursor.x * 0.5;
         const parallaxY = - cursor.y * 0.5;
 
-        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 0.1;
-        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 0.1;
+        cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * deltaTime * 5;
+        cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * deltaTime * 5;
 
         // Update objects
         for ( const object of sectionMeshes ) {
