@@ -90,3 +90,34 @@ export function createTorusKnot ( props : TorusKnotProps ) {
     );
     return createMesh( geometry, props )
 }
+
+// Particles
+type ParticlesProps = {
+    particleCount: number;
+    size: number;
+}
+
+export function createParticles ( props : ParticlesProps ) : THREE.Points {
+    const { particleCount, size } = props;
+
+    const positions = new Float32Array( particleCount * 3 );
+
+    for ( let i = 0; i < particleCount; i++ ) {
+        positions[i * 3 + 0] = ( Math.random() - 0.5 ) * 10;
+        positions[i * 3 + 1] = ( Math.random() - 0.5 ) * 10;
+        positions[i * 3 + 2] = ( Math.random() - 0.5 ) * 10;
+    }
+    
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+
+    const material = new THREE.PointsMaterial({ 
+        color: "#ffffff", 
+        size: size, 
+        sizeAttenuation: true 
+    });
+
+    const particles = new THREE.Points( geometry, material );
+    return particles;
+
+}

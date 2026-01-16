@@ -5,7 +5,7 @@ import { getCanvas } from "./three/canvas";
 import { createScene } from "./three/scene";
 import { createCamera } from "./three/camera";
 import { createRenderer } from "./three/renderer";
-import { createTorus, createCone, createTorusKnot } from "./three/models/meshs";
+import { createTorus, createCone, createTorusKnot, createParticles } from "./three/models/meshs";
 import { createAmbientLight, createDirectionalLight } from "./three/lights"; 
 import { createAxesHelper } from "./three/models/axesHelper";
 import { setupResize } from "./three/resize";
@@ -54,6 +54,10 @@ torusKnot.position.y = - objectsDistance * 2;
 torus.position.x = 2;
 cone.position.x = - 2;
 torusKnot.position.x = 2;
+
+// --- Particles ---
+const particles = createParticles({ particleCount: 200, size: 0.03 });
+scene.add( particles );
 
 
 // --- Setup Axes Helper ---
