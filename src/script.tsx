@@ -56,7 +56,7 @@ cone.position.x = - 2;
 torusKnot.position.x = 2;
 
 // --- Particles ---
-const particles = createParticles({ particleCount: 200, size: 0.03 });
+const particles = createParticles({ particleCount: 200, size: 0.03, objectsDistance, sectionMeshes });
 scene.add( particles );
 
 

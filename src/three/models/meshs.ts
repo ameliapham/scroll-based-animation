@@ -95,16 +95,17 @@ export function createTorusKnot ( props : TorusKnotProps ) {
 type ParticlesProps = {
     particleCount: number;
     size: number;
+    objectsDistance: number;
+    sectionMeshes: THREE.Object3D[];
 }
 
 export function createParticles ( props : ParticlesProps ) : THREE.Points {
-    const { particleCount, size } = props;
-
+    const { particleCount, size, objectsDistance, sectionMeshes } = props;
     const positions = new Float32Array( particleCount * 3 );
 
     for ( let i = 0; i < particleCount; i++ ) {
         positions[i * 3 + 0] = ( Math.random() - 0.5 ) * 10;
-        positions[i * 3 + 1] = ( Math.random() - 0.5 ) * 10;
+        positions[i * 3 + 1] = objectsDistance * 0.5 - Math.random() * objectsDistance * sectionMeshes.length;
         positions[i * 3 + 2] = ( Math.random() - 0.5 ) * 10;
     }
     
