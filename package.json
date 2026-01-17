@@ -12,7 +12,7 @@
   "dependencies": {
     "@types/gsap": "^3.0.0",
     "@types/three": "^0.172.0",
-    "gsap": "^3.12.3",
+    "gsap": "^3.5.1",
     "lil-gui": "^0.20.0",
     "three": "^0.159.0",
     "typescript": "^5.7.3",
