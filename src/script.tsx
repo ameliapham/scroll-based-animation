@@ -7,7 +7,7 @@ import { createCamera } from "./three/camera";
 import { createRenderer } from "./three/renderer";
 import { createTorus, createCone, createTorusKnot, createParticles } from "./three/models/meshs";
 import { createAmbientLight, createDirectionalLight } from "./three/lights"; 
-import { createAxesHelper } from "./three/models/axesHelper";
+// import { createAxesHelper } from "./three/models/axesHelper";
 import { setupResize } from "./three/resize";
 import { startAnimation } from "./three/animate";
 
@@ -27,7 +27,7 @@ const camera = createCamera();
 cameraGroup.add(camera)
 
 // --- Lights Setup ---
-//const { ambientLight } = createAmbientLight();
+// const { ambientLight } = createAmbientLight();
 const { directionalLight } = createDirectionalLight();
 directionalLight.position.set(2, 3, 1);
 directionalLight.target.position.set(0, 0, 0);
@@ -39,21 +39,21 @@ const meshParams = {
     textureURL: "static/textures/gradients/3.jpg",
 }
 
-const torus = createTorus({ size: 0.8, materialProps: meshParams});
+const torus = createTorus({ size: 1, materialProps: meshParams});
 const cone = createCone({ radius: 1, height: 2, materialProps: meshParams});
 const torusKnot = createTorusKnot({ size: 0.8, materialProps: meshParams}); 
 scene.add( torus, cone, torusKnot );
 
 const sectionMeshes = [ torus, cone, torusKnot ];
 
-const objectsDistance = 4;
+const objectsDistance = 5;
 torus.position.y = - objectsDistance * 0;
 cone.position.y = - objectsDistance * 1;
 torusKnot.position.y = - objectsDistance * 2;
 
-torus.position.x = 2;
-cone.position.x = - 2;
-torusKnot.position.x = 2;
+torus.position.x = 3;
+cone.position.x = - 3;
+torusKnot.position.x = 3;
 
 // --- Particles ---
 const particles = createParticles({ particleCount: 200, size: 0.03, objectsDistance, sectionMeshes });
@@ -61,8 +61,8 @@ scene.add( particles );
 
 
 // --- Setup Axes Helper ---
-const axesHelper = createAxesHelper({ size: 2 });
-scene.add(axesHelper)
+// const axesHelper = createAxesHelper({ size: 2 });
+// scene.add(axesHelper)
 
 // --- Renderer Setup ---
 const renderer = createRenderer({ canvas });
