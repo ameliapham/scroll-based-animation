@@ -1,13 +1,18 @@
 import * as THREE from "three";
 
-type MeshProps = {
-    textureURL: string,
+type MaterialProps = {
     color: string,
+    textureURL: string,
+}
+
+type MeshProps = {
+    materialProps : MaterialProps,
     positions?: THREE.Vector3,
     rotations?: THREE.Euler,
 }
 
-function createMaterial( color: string, textureURL: string ): THREE.Material {
+function createMaterial( props : MaterialProps ): THREE.Material {
+    const { color, textureURL } = props;
     const gradientTexture = new THREE.TextureLoader().load( textureURL );
 
     gradientTexture.minFilter = THREE.NearestFilter;
@@ -21,10 +26,10 @@ function createMaterial( color: string, textureURL: string ): THREE.Material {
     return material;
 }
 
-function createMesh( geometry: THREE.BufferGeometry, props: MeshProps ) : THREE.Mesh {
-    const { color, textureURL, positions, rotations } = props;
+function createMesh( geometry : THREE.BufferGeometry, props : MeshProps ) : THREE.Mesh {
+    const { materialProps, positions, rotations } = props;
     
-    const material = createMaterial( color, textureURL );
+    const material = createMaterial( materialProps );
 
     const mesh = new THREE.Mesh( geometry, material );
 

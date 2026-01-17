@@ -39,9 +39,9 @@ const meshParams = {
     textureURL: "static/textures/gradients/3.jpg",
 }
 
-const torus = createTorus({ size: 0.8, ...meshParams});
-const cone = createCone({ radius: 1, height: 2, ...meshParams});
-const torusKnot = createTorusKnot({ size: 0.8, ...meshParams}); 
+const torus = createTorus({ size: 0.8, materialProps: meshParams});
+const cone = createCone({ radius: 1, height: 2, materialProps: meshParams});
+const torusKnot = createTorusKnot({ size: 0.8, materialProps: meshParams}); 
 scene.add( torus, cone, torusKnot );
 
 const sectionMeshes = [ torus, cone, torusKnot ];
