@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import gsap from "gsap";
 
 type AnimateParams = {
     scene: THREE.Scene;
@@ -17,9 +18,25 @@ export function startAnimation( props : AnimateParams ) {
 
     // Scroll state
     let scrollY = window.scrollY;
+    let currentSection = 0;
     
     const onScroll = () => {
         scrollY = window.scrollY;
+
+        const newSection = Math.round( scrollY / window.innerHeight );
+        if ( newSection != currentSection ) {
+            currentSection = newSection;
+
+            gsap.to(
+                sectionMeshes[currentSection].rotation,
+                {
+                    duration: 1.5,
+                    ease: "power2.inOut",
+                    x: "+=" + Math.PI * 2,
+                    y: "+=" + Math.PI * 2,
+                }
+            )
+        }
     }
     window.addEventListener( 'scroll', onScroll );
 
@@ -53,8 +70,8 @@ export function startAnimation( props : AnimateParams ) {
 
         // Update objects
         for ( const object of sectionMeshes ) {
-            object.rotation.x = 0.1 * elapsedTime;
-            object.rotation.y = 0.12 * elapsedTime;
+            object.rotation.x += 0.1 * deltaTime;
+            object.rotation.y += 0.12 * deltaTime;
         }
 
         // Update render
