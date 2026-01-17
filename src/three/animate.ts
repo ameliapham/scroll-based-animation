@@ -34,6 +34,7 @@ export function startAnimation( props : AnimateParams ) {
                     ease: "power2.inOut",
                     x: "+=" + Math.PI * 2,
                     y: "+=" + Math.PI * 2,
+                    z: "+=" + Math.PI * 0.5
                 }
             )
         }
